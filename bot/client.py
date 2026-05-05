@@ -23,6 +23,9 @@ async def iniciar_bot():
     ]
     for ext in extensiones:
         if ext not in bot.extensions:
-            await bot.load_extension(ext)
-            print(f"Modulo: {ext} cargado.")
+            try:
+                await bot.load_extension(ext)
+                print(f"Modulo: {ext} cargado.")
+            except Exception as e:
+                print(f"Modulo: {ext} Error: {e}.")
     await bot.start(TOKEN)
