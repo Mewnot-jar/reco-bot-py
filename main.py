@@ -16,7 +16,7 @@ app = FastAPI(title="API recordatorios", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["https://reco-bot-py.onrender.com"],
+    allow_origins = ["*"],
     allow_credentials = True,
     allow_methods = ["*"],
     allow_headers = ["*"],
