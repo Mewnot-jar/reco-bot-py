@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from api.schemas import NuevoRecordatorio
 import database.db as database
-
+from bson import ObjectId
 router = APIRouter()
 
 
@@ -23,5 +23,13 @@ async def crear_recordatorio(recordatorio: NuevoRecordatorio):
         del nuevo_dato["_id"]
 
     return {"mensaje": "Recordatorio creado correctamente."}
-# @router.delete("/recordatorios", tags=["Recordatorios"])
-# async def borrar_recordatorio(recordatorio: NuevoRecordatorio):
+
+@router.delete("/recordatorios{id}", tags=["Recordatorios"])
+async def borrar_recordatorio(id: str):
+    filtro = {"_id": ObjectId(id)}
+    resultado = await database.coleccion_recordatorios.delete_one(filtro)
+    if resultado.deleted_count > 0:
+        return {"mensaje": "Tarea eliminada."}
+    else:
+        return {"mensaje": "Error 404"}
+    
