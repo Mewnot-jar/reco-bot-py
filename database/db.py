@@ -8,6 +8,7 @@ MONGODB_URI = os.getenv("MONGODB_URI")
 client = None
 db = None
 coleccion_recordatorios = None
+coleccion_configuraciones = None
 
 async def conectar_db():
     global cliente, db, coleccion_recordatorios
@@ -15,6 +16,7 @@ async def conectar_db():
         client = AsyncIOMotorClient(MONGODB_URI)
         db = client.reco
         coleccion_recordatorios = db.recordatorios
+        coleccion_configuraciones = db.configuraciones
 
         await client.admin.command('ping')
         print("MongoDB Atlas ON")

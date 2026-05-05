@@ -10,7 +10,7 @@ class Configuracion(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def set_canal_recordatorios(self, ctx, canal: discord.TextChannel):
         try:
-            col_config = database["configuraciones"]
+            col_config = database.coleccion_configuraciones
 
             await col_config.update_one(
                 {"guild_id": ctx.guild.id},

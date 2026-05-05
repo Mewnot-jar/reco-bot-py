@@ -14,8 +14,8 @@ class Notificaciones(commands.Cog):
         await self.bot.wait_until_ready()
 
         try:
-            col_config = database["configuraciones"]
-            col_tareas = database["recordatorios"]
+            col_config = database.coleccion_configuraciones
+            col_tareas = database.coleccion_recordatorios
 
             cursor_tareas = col_tareas.find()
             lista_trabajos = await cursor_tareas.to_list(lenght=100)
