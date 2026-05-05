@@ -7,8 +7,11 @@ router = APIRouter()
 
 @router.get("/recordatorios", tags=["Recordatorios"])
 async def obtener_recordatorios():
-    cursor = database.coleccion_recordatorios.find({}, {"_id":0})
+    cursor = database.coleccion_recordatorios.find({})
     recordatorios = await cursor.to_list(length=100)
+    for tarea in recordatorios:
+        tarea["id"] = str(tarea["_id"])
+        del tarea["_id"]
     return recordatorios
 
 @router.post("/recordatorios", tags=["Recordatorios"])
@@ -20,3 +23,5 @@ async def crear_recordatorio(recordatorio: NuevoRecordatorio):
         del nuevo_dato["_id"]
 
     return {"mensaje": "Recordatorio creado correctamente."}
+# @router.delete("/recordatorios", tags=["Recordatorios"])
+# async def borrar_recordatorio(recordatorio: NuevoRecordatorio):
