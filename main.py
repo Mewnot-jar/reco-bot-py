@@ -1,28 +1,21 @@
+import asyncio
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from pydantic import BaseModel
+from api.routers import recordatorios
+from bot.client import iniciar_bot
+from database.db import conectar_db, cerrar_db
 
-app = FastAPI(title="API recordatorios")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await conectar_db()
+    tarea_bot = asyncio.create_task(iniciar_bot())
+    yield
+    await cerrar_db()
+app = FastAPI(title="API recordatorios", lifespan=lifespan)
 
-class NuevoRecordatorio(BaseModel):
-    nombre: str
-    asignatura: str
-    fecha: str
-    descripcion: str
-    seccion: str
+app.include_router(recordatorios.router)
 
-test_db = []
-
-@app.get("/")
+@app.get("/", tags=["Estado"])
 def estado_servidor():
-    return {"mensaje": "Servidor On"}
-
-@app.get("/recordatorios")
-def obtener_recordatorios():
-    return test_db
-
-@app.post("/recordatorio")
-def crear_recordatorio(recordatorio: NuevoRecordatorio):
-    nuevo_dato = recordatorio.model_dump()
-    test_db.append(nuevo_dato)
-    return {"mensaje": "Nuevo recordatorio agregado con exito."}
+    return {"mensaje": "El servidor y la estructura modular estan funcionando."}
 
