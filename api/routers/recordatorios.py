@@ -24,7 +24,7 @@ async def crear_recordatorio(recordatorio: NuevoRecordatorio):
 
     return {"mensaje": "Recordatorio creado correctamente."}
 
-@router.delete("/recordatorios{id}", tags=["Recordatorios"])
+@router.delete("/recordatorios/{id}", tags=["Recordatorios"])
 async def borrar_recordatorio(id: str):
     filtro = {"_id": ObjectId(id)}
     resultado = await database.coleccion_recordatorios.delete_one(filtro)
