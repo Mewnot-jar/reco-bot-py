@@ -19,7 +19,7 @@ app.add_middleware(
     allow_origins = ["https://reco-bot-py.onrender.com"],
     allow_credentials = True,
     allow_methods = ["*"],
-    allow_header = ["*"],
+    allow_headers = ["*"],
 )
 
 app.include_router(recordatorios.router)
