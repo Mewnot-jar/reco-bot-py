@@ -11,7 +11,7 @@ coleccion_recordatorios = None
 coleccion_configuraciones = None
 
 async def conectar_db():
-    global cliente, db, coleccion_recordatorios, coleccion_configuraciones
+    global client, db, coleccion_recordatorios, coleccion_configuraciones
     try:
         client = AsyncIOMotorClient(MONGODB_URI)
         db = client.reco

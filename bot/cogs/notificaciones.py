@@ -9,7 +9,7 @@ class Notificaciones(commands.Cog):
     def cog_unload(self):
         self.enviar_lista_auto.cancel()
 
-    @tasks.loop(hours=12)
+    @tasks.loop(minutes=1)
     async def enviar_lista_auto(self):
         await self.bot.wait_until_ready()
 
@@ -18,7 +18,7 @@ class Notificaciones(commands.Cog):
             col_tareas = database.coleccion_recordatorios
 
             cursor_tareas = col_tareas.find()
-            lista_trabajos = await cursor_tareas.to_list(lenght=100)
+            lista_trabajos = await cursor_tareas.to_list(length=100)
 
             if not lista_trabajos:
                 return
