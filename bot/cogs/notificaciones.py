@@ -9,7 +9,7 @@ class Notificaciones(commands.Cog):
     def cog_unload(self):
         self.enviar_lista_auto.cancel()
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(hours=6)
     async def enviar_lista_auto(self):
         await self.bot.wait_until_ready()
 
