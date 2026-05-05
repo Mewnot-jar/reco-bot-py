@@ -1,5 +1,7 @@
 # 🤖 RecordBOT - API & Discord Bot (Backend)
 
+![Estado: En Desarrollo](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
+
 Un sistema híbrido desarrollado en **Python** que combina una API RESTful rápida y un bot de Discord multi-servidor. Diseñado para gestionar y notificar automáticamente sobre tareas, evaluaciones y recordatorios académicos.
 
 ## 🚀 Características Principales
