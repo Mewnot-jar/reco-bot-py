@@ -30,7 +30,11 @@ class Configuracion(commands.Cog):
     @set_canal_recordatorios.error
     async def set_canal_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
-            await ctx.send("No tienes permisos, bobo")
+            await ctx.send("No tienes permisos, bobo.")
+        elif isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send("Falta mencionar el canal.")
+        elif isinstance(error, commands.ChannelNotFound):
+            await ctx.send("No se encontro el canal.")
 
 async def setup(bot):
     await bot.add_cog(Configuracion(bot))

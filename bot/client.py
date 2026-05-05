@@ -14,10 +14,15 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print("Bot on")
-    await bot.load_extension("bot.cogs.configuracion")
-    await bot.load_extension("bot.cogs.notificaciones")
 
 async def iniciar_bot():
-    if "bot.cogs.tareas" not in bot.extensions:
-        await bot.load_extension("bot.cogs.tareas")
+    extensiones = [
+        "bot.cogs.tareas",
+        "bot.cogs.configuracion",
+        "bot.cogs.notificaciones",
+    ]
+    for ext in extensiones:
+        if ext not in bot.extensions:
+            await bot.load_extension(ext)
+            print(f"Modulo: {ext} cargado.")
     await bot.start(TOKEN)
