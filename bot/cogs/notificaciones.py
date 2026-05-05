@@ -18,7 +18,7 @@ class Notificaciones(commands.Cog):
             col_tareas = database.coleccion_recordatorios
 
             cursor_tareas = col_tareas.find()
-            lista_trabajos = await cursor_tareas.to_list(length=100)
+            lista_trabajos = await cursor_tareas.to_list(length=500)
 
             if not lista_trabajos:
                 return
