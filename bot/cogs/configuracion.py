@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from database.db import database
+import database.db as database
 
 class Configuracion(commands.Cog):
     def __init__(self, bot):

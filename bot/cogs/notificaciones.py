@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-from database.db import database
+import database.db as database
 
 class Notificaciones(commands.Cog):
     def __init__(self, bot):
