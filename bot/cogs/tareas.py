@@ -37,7 +37,5 @@ class Tareas(commands.Cog):
             )
             embed.add_field(name=titulo_campo, value=detalle_campo, inline=False)
         await ctx.send(embed=embed)
-
-
 async def setup(bot):
     await bot.add_cog(Tareas(bot))
