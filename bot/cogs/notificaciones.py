@@ -35,7 +35,7 @@ class Notificaciones(commands.Cog):
                     f"**🏷️ Seccion:** {tarea['seccion']}\n"
                     f"**📝 Descripcion:** {tarea['descripcion']}"
                 )
-            embed.add_field(name=titulo_campo, value=detalle_campo, inline=False)
+                embed.add_field(name=titulo_campo, value=detalle_campo, inline=False)
 
             cursor_config = col_config.find()
             lista_configuraciones = await cursor_config.to_list(length=500)
