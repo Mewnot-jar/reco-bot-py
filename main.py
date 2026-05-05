@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from api.routers import recordatorios
 from bot.client import iniciar_bot
 from database.db import conectar_db, cerrar_db
+from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -12,6 +13,14 @@ async def lifespan(app: FastAPI):
     yield
     await cerrar_db()
 app = FastAPI(title="API recordatorios", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["https://reco-bot-py.onrender.com"],
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_header = ["*"],
+)
 
 app.include_router(recordatorios.router)
 
