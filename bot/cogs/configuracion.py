@@ -36,5 +36,9 @@ class Configuracion(commands.Cog):
         elif isinstance(error, commands.ChannelNotFound):
             await ctx.send("No se encontro el canal.")
 
+    @commands.command(name="link")
+    async def obtener_link(self, ctx):
+        await ctx.send(f"Entra a https://front-reco-bot-react.vercel.app/ para configurar los recordatorios.")
+
 async def setup(bot):
     await bot.add_cog(Configuracion(bot))
