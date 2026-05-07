@@ -1,5 +1,5 @@
 import os
-from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import AsyncMongoClient
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,7 +13,7 @@ coleccion_configuraciones = None
 async def conectar_db():
     global client, db, coleccion_recordatorios, coleccion_configuraciones
     try:
-        client = AsyncIOMotorClient(MONGODB_URI)
+        client = AsyncMongoClient(MONGODB_URI)
         db = client.reco
         coleccion_recordatorios = db.recordatorios
         coleccion_configuraciones = db.configuraciones
